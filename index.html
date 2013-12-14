@@ -47,10 +47,10 @@ img {
 	-webkit-transition: -webkit-transform 3s ease-in-out;
 	-moz-transform-style: preserve-3d;
 	-moz-transform: rotateX(30deg) rotateY(-15deg) translate3d(0,0,0);
-	-moz-transition: -webkit-transform 3s ease-in-out;
+	-moz-transition: -moz-transform 3s ease-in-out;
 	transform-style: preserve-3d;
 	transform: rotateX(30deg) rotateY(-15deg) translate3d(0,0,0);
-	transition: -webkit-transform 3s ease-in-out;
+	transition: transform 3s ease-in-out;
 	width: 30px;
 	height: 30px;
 	text-align: center;
@@ -99,7 +99,7 @@ img {
 									setInterval(function() {
 										var bi = $('<div class="bi">B</div>').css('left',Math.random()*100+'%').appendTo('#scene');
 										setTimeout(function() {
-											bi.css(transform,'translate3d(-30px,'+window.innerHeight+'px,0) rotateX(30deg) rotateY(45deg)').on('webkitTransitionEnd',function() {
+											bi.css(transform,'translate3d(-30px,'+window.innerHeight+'px,0) rotateX(30deg) rotateY(45deg)').on(transitionEnd,function() {
 												$(this).remove();
 											});
 										},10);
