@@ -121,14 +121,17 @@ img {
 			animationdelay = document.body.style.animation===undefined?'-webkit-animation-delay':animationdelay;
 			$('img').css('opacity',0).on(transitionEnd,function() {
 				var audio = document.querySelector('#b');
+				var rain = document.querySelector('#rain');
+				var c = document.querySelector('#c');
 				audio.play();
 				$(audio).on('ended',function() {
 					$('#scene div').each(function(i) {
 						$(this).css(playstate,'running').css(animationdelay,i*0.05+'s');
 					});
 					$('#scene').css(transform,'translateY(-50%)');
-					document.querySelector('#rain').pause();
-					document.querySelector('#c').play();
+					rain.pause();
+					$(c).on('ended',function() { location.reload(); });
+					c.play();
 				});
 				$('.title').html("여러분의 메마른 마음을").css('opacity',1).on(transitionEnd,function() {
 					$(this).css('opacity',0).on(transitionEnd,function() {
@@ -136,7 +139,7 @@ img {
 							$(this).css('opacity',0).on(transitionEnd,function() {
 								$(this).html("B").css('opacity',1).on(transitionEnd,function() {
 									$(this).html("");
-									document.querySelector('#rain').play();
+									rain.play();
 									
 									setInterval(function() {
 										var r = Math.random()*100;
