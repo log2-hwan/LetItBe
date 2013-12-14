@@ -19,8 +19,8 @@ img {
 	left: 50%;
 	margin-top: -300px;
 	margin-left: -300px;
-	-webkit-transition: opacity 10s;
-	transition: opacity 10s;
+	-webkit-transition: opacity 5s;
+	transition: opacity 5s;
 }
 
 #scene {
@@ -38,7 +38,7 @@ img {
     position: relative;
 }
 
-.bi {
+#scene div {
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -56,6 +56,11 @@ img {
 	text-align: center;
 	line-height: 30px;
 	font-size: 24px;
+}
+
+#scene .ci {
+	font-size: 36px;
+	color: #ff0000;
 }
 
 .title {
@@ -97,7 +102,8 @@ img {
 									document.querySelector('#rain').play();
 									
 									setInterval(function() {
-										var bi = $('<div class="bi">B</div>').css('left',Math.random()*100+'%').appendTo('#scene');
+										var r = Math.random()*100;
+										var bi = $('<div class="'+(r>99?'ci':'bi')+'">'+(r>99?'C':'B')+'</div>').css('left',Math.random()*100+'%').appendTo('#scene');
 										setTimeout(function() {
 											bi.css(transform,'translate3d(-30px,'+window.innerHeight+'px,0) rotateX(30deg) rotateY(45deg)').on(transitionEnd,function() {
 												$(this).remove();
