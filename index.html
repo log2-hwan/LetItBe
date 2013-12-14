@@ -45,20 +45,27 @@ html, body {
 	text-align: center;
 	margin-top: -32px;
 	opacity: 0;
-	-webkit-transition: opacity 2s;
+	-webkit-transition: opacity 2.7s;
 }
 
 </style>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 		$(document).ready(function() {
+			var audio = document.querySelector('#b');
+			audio.play();
+			$(audio).on('ended',function() {
+				audio.currentTime = 13;
+				audio.play();
+			});
 			$('.title').html("여러분의 메마른 마음을").css('opacity',1).on('webkitTransitionEnd',function() {
 				$(this).css('opacity',0).on('webkitTransitionEnd',function() {
 					$(this).html("적셔줄 비가 옵니다").css('opacity',1).on('webkitTransitionEnd',function() {
 						$(this).css('opacity',0).on('webkitTransitionEnd',function() {
 							$(this).html("B").css('opacity',1).on('webkitTransitionEnd',function() {
 								$(this).html("");
-								document.querySelector('audio').play();
+								document.querySelector('#rain').play();
+								
 								setInterval(function() {
 									var bi = $('<div class="bi">B</div>').css('left',Math.random()*100+'%').appendTo('#scene');
 									setTimeout(function() {
@@ -78,5 +85,6 @@ html, body {
 <body>
 	<div class="title"></div>
 	<div id="scene"></div>
-	<audio src="rain-01.mp3" loop preload></audio>
+	<audio id="rain" src="rain-01.mp3" loop preload></audio>
+	<audio id="b" src="b.ogg" preload></audio>
 </body>
